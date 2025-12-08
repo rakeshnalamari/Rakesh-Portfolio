@@ -1,0 +1,501 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>My Personal Portfolio</title>
+
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init({
+      publicKey: "lu8ra3qLPdPgtWd2R"
+    });
+  })();
+</script>
+
+  </head> 
+
+
+  <body>
+      <header class ="header">
+          <a href = '#' class = 'logo'>Portfolio</a>
+
+          <i class="bxr bx-menu" id="menu-icon"></i>
+
+          <nav class="navbar">
+              <a href="#home" class="active">Home</a>
+              <a href="#about">About</a>
+              <a href="#education">Education</a>
+              <a href="#projects">Projects</a>
+              <a href="#certifications">Certifications</a>
+              <a href="#skills">Skills</a>
+              <a href="#contact">Contact</a> 
+
+          </nav>
+      </header>
+
+      <section class="home" id="home">
+    <div class="home-content">
+      <h3>Hello, It's me</h3>
+        <h1>
+          <span class="highlight">R</span>akesh 
+          <span class="highlight">N</span>alamari
+        </h1>
+
+      <h3>And I'm a <span>Python Backend Developer</span></h3>
+      <p>
+        Passionate about designing and developing scalable backend systems using Django and MySQL. I love solving complex problems, optimizing performance, and continuously learning new technologies to build efficient, reliable applications.
+      </p>
+
+      <div class="social-media">
+        <a href="https://www.linkedin.com/in/rakesh-nalamari-49b7a829a/" target="_blank"><i class='bx bxl-linkedin'></i></a>
+        <a href="https://github.com/rakeshnalamari" target="_blank"><i class='bx bxl-github'></i></a>
+        <a href="mailto:rakesh.nalamari.2004@gmail.com"><i class='bx bxl-gmail'></i></a>
+      </div>
+
+      <a href="Rakesh_Nalamari_Resume.pdf" download class="btn btn-primary download-btn">Download Resume</a>
+
+
+    </div>
+
+    <div class="home-img">
+      <img src="images/HomeImage4.png" alt="Profile Image">
+    </div>
+  </section>
+
+      <section class="about" id="about">
+          <div class="about-img">
+              <img src="images/HomeImage4.png" alt="">
+          </div>
+          <div class="about-content">
+              <h2 class="heading">About  <span>Me</span></h2>
+              <h3>Python Backend Developer</h3>
+              <p>Passionate about designing and developing scalable backend systems using Django and MySQL. I love solving complex problems, optimizing performance, and continuously learning new technologies to build efficient, reliable applications.</p>
+
+              <button href="#" class="btn" onclick="openPopup()">Read More</a>
+          </div>
+      </section>
+      <!-- About Popup -->
+        <div id="aboutPopup" class="popup-overlay">
+        <div class="popup-box">
+          <span class="popup-close" onclick="closePopup()">&times;</span>
+
+          <h3>More About Me</h3>
+
+          <p>
+            I’m a passionate Python Backend Developer who enjoys building clean,
+            efficient, and scalable systems. I specialize in Django, REST APIs, MySQL,
+            authentication systems, and backend logic that turns ideas into working
+            applications.
+          </p>
+
+          <h4 style="margin-top:1rem; color:var(--main-color);">💼 Offline Internship Experience</h4>
+          <p>
+            I completed an offline internship where I worked on real-time backend tasks,
+            problem-solving activities, and learned how to collaborate within a
+            professional work environment. This experience helped me understand product
+            structure, communication flow, deadlines, and team coordination.
+          </p>
+
+          <h4 style="margin-top:1rem; color:var(--main-color);">🎨 My Creative Side</h4>
+          <p>
+            Apart from coding, I'm an artist. I’ve won multiple drawing competitions and
+            have had my artwork published in newspapers. Creativity helps me think
+            visually, design better user experiences, and bring a unique perspective to
+            problem-solving.
+          </p>
+
+          <h4 style="margin-top:1rem; color:var(--main-color);">🚀 What Drives Me</h4>
+          <p>
+            I love learning new technologies, improving systems, and taking ideas from
+            scratch to launch. Whether it's backend logic or a blank drawing sheet,
+            creating something meaningful is what motivates me every day.
+          </p>
+
+        </div>
+      </div>
+
+      
+
+  <section class="education" id="education">
+    <h2 class="heading">My <span>Education Journey</span></h2>
+
+    <div class="edu-track">
+      <!-- 10th Standard -->
+      <div class="edu-step" data-edu="edu1">
+        <div class="edu-dot"></div>
+        <h3>10th Standard</h3>
+        <p>Govt. High School (Boys), Podili<br>(2019–2020)</p>
+        <p>GPA: 10.0</p>
+        <button class="btn edu-btn">Read More</button>
+      </div>
+
+      <!-- Intermediate -->
+      <div class="edu-step" data-edu="edu2">
+        <div class="edu-dot"></div>
+        <h3>Intermediate (MPC)</h3>
+        <p>Govt. Junior College, Podili <br>(2020–2022)</p>
+        <p>Percentage: 81%</p>
+        <button class="btn edu-btn">Read More</button>
+      </div>
+
+      <!-- B.Tech -->
+      <div class="edu-step" data-edu="edu3">
+        <div class="edu-dot"></div>
+        <h3>B.Tech (CSE - AI & ML)</h3>
+        <p>BVSR Engineering College, Chimakurthy<br>(2022–2026)</p>
+        <p>CGPA: 8.4</p>
+        <button class="btn edu-btn">Read More</button>
+      </div>
+    </div>
+
+    <!-- Read More Box -->
+    <div class="edu-readmore-box">
+      <div class="edu-readmore-inner">
+        <!-- JS will append content here -->
+      </div>
+    </div>
+
+    <!-- Hidden Read More Content (keep anywhere in DOM, but outside box is OK) -->
+    <div class="edu-more-content" id="edu1" style="display:none;">
+        <ul>
+      <li>It is the covid pandemic I got passed out my 10th standard with GPA 10.0</li>
+      <li>Won awards in school-level to district-level of drawing and science exhibitions</li>
+      <li>Represented school in art competitions featured in local newspapers</li>
+        </ul>
+    </div>
+
+    <div class="edu-more-content" id="edu2" style="display:none;">
+        <ul>
+      <li>Completed MPC with 81% aggregate</li>
+      <li>Developed strong foundation in Mathematics and Physics through problem-solving</li>
+      <li>Started exploring programming and web design during this time</li>
+      </ul>
+    </div>
+
+    <div class="edu-more-content" id="edu3" style="display:none;">
+        <ul>
+      <li>Developed multiple full-stack and Django projects</li>
+      <li>Balanced my Academic and Career oriented learning in the first 3 years</li>
+      <li>Done Live Internship as a python backend developer</li>
+      <li>Continuously enhancing skills in backend development and moving towards AI and ML</li>
+        </ul>
+    </div>
+  </section>
+
+
+
+<section class="projects" id="projects">
+  <h2 class="heading">My <span>Projects</span></h2>
+
+  <div class="projects-container">
+
+    <!-- Project 1: Django E-Commerce Backend -->
+    <div class="projects-box">
+      <img src="images/projects/Ecommerce.jpeg" alt="E-Commerce Backend">
+      <h3>Django E-Commerce Backend System</h3>
+      <p>
+        A full backend e-commerce engine with product CRUD, authentication, cart logic,
+        order handling, and role-based access using Django ORM and MySQL.
+      </p>
+      <a href="https://github.com/rakeshnalamari/Django-Ecommerce" class="btn" target="_blank">View Project</a>
+    </div>
+
+    <!-- Project 2: Clinic / Hospital Management System -->
+    <div class="projects-box">
+      <img src="images/projects/Clinic_Management_System.jpeg" alt="Hospital Management System">
+      <h3>Clinic Management System</h3>
+      <p>
+        A Django-based backend for hospitals to manage doctors, patients, slot creation,
+        appointment booking, rescheduling, and JWT-secured authentication.
+      </p>
+      <a href="https://github.com/rakeshnalamari/Django-Hospital-Management" class="btn" target="_blank">View Project</a>
+    </div>
+
+    <!-- Project 3: Ticket Booking System -->
+    <div class="projects-box">
+      <img src="images/projects/Ticket_Booking_System.jpeg" alt="Ticket Booking">
+      <h3>Ticket Booking System</h3>
+      <p>
+        A Python-Django based system that allows users to book tickets, check availability,
+        manage schedules, and handle booking confirmations with database integration.
+      </p>
+      <a href="https://github.com/rakeshnalamari/Ticket-Booking-System" class="btn" target="_blank">View Project</a>
+    </div>
+
+    <!-- Project 4: Doodle Jump Game -->
+    <div class="projects-box">
+      <img src="images/projects/Doodle_Game.png" alt="Doodle Game">
+      <h3>Doodle Jump Game</h3>
+      <p>
+        A fun browser-based jumping game with animations, platform physics, score handling,
+        and visual effects built using JavaScript and HTML Canvas.
+      </p>
+      <a href="https://github.com/rakeshnalamari/Doodle-Game" class="btn" target="_blank">View Project</a>
+    </div>
+
+    <!-- Project 5: Weather Forecast App -->
+    <div class="projects-box">
+      <img src="images/projects/Weather_Forecast_App.jpeg" alt="Weather App">
+      <h3>Weather Forecast App</h3>
+      <p>
+        A clean weather dashboard fetching real-time meteorological data through APIs with
+        a responsive UI and dynamic weather visuals.
+      </p>
+      <a href="https://github.com/rakeshnalamari/Weather-Forecasting" class="btn" target="_blank">View Project</a>
+    </div>
+
+    <!-- Project 6: Netflix Clone -->
+    <div class="projects-box">
+      <img src="images/projects/Netflix_Clone.png" alt="Netflix Clone">
+      <h3>Netflix Clone (Frontend)</h3>
+      <p>
+        A responsive Netflix homepage clone with modern UI, built using HTML, CSS, and JavaScript.
+      </p>
+      <a href="https://github.com/rakeshnalamari/NetflixClone" class="btn" target="_blank">View Project</a>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="certifications" id="certifications">
+  <h2 class="heading" style="color: white;">My <span>Certifications</span></h2>
+
+  <div class="certifications-container">
+
+    <div class="certificate-box">
+      <h3>Internship<br>(Artificial Intelligence)</h3>
+      <p>Certified by NT & CS · 2024</p>
+      <button class="btn" onclick="openCertificate('images/certificates/AI_Internship.png')">View Certificate</button>
+    </div>
+
+    <div class="certificate-box">
+      <h3>Internship<br>(Machine Learning)</h3>
+      <p>Certified by Chaithra Technologies · 2024</p>
+      <button class="btn" onclick="openCertificate('images/certificates/ML_Internship.jpg')">View Certificate</button>
+    </div>
+
+    <div class="certificate-box">
+      <h3>Internship<br>(Full Stack Web Development)</h3>
+      <p>Certified by Ripan Technologies · 2024</p>
+      <button class="btn" onclick="openCertificate('images/certificates/Full_Stack_Internship.jpg')">View Certificate</button>
+    </div>
+
+    <div class="certificate-box">
+      <h3>Python (Basics)</h3>
+      <p>Certified by HackerRank · 2024</p>
+      <button class="btn" onclick="openCertificate('images/certificates/Python_Hackerrank.png')">View Certificate</button>
+    </div>
+
+    <div class="certificate-box">
+      <h3>Python Programming Language</h3>
+      <p>Certified by MindLuster · 2024</p>
+      <button class="btn" onclick="openCertificate('images/certificates/Python_Programming_Language_(Mindluster).png')">View Certificate</button>
+    </div>
+
+    <div class="certificate-box">
+      <h3>Soft Skills Development</h3>
+      <p>Certified by TCS iON · 2023</p>
+      <button class="btn" onclick="openCertificate('images/certificates/Soft_Skills_TCSION.png')">View Certificate</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- POPUP MODAL -->
+<div class="certificate-modal" id="certificateModal">
+  <span class="close-btn" onclick="closeCertificate()">&times;</span>
+  <img id="certificateImage" src="" alt="Certificate Preview">
+</div>
+
+
+
+
+<section class="skills" id="skills">
+  <!-- Section Heading -->
+  <h2 class="heading">My <span>Skills</span></h2>
+
+  <!-- Technical Skills Heading -->
+  <h3 class="subheading">Technical Skills</h3>
+
+  <!-- Skill Circles Row -->
+  <div class="skill-row">
+
+    <!-- Python -->
+    <div class="skill-circle" style="--percent:92;" 
+         data-title="Python" 
+         data-know="OOP, Modules, Exception Handling, Python Libraries"
+         data-built="Django E-commerce, Clinic Management System"
+         data-confidence="92%">
+      <span>Python</span>
+    </div>
+
+    <!-- Django -->
+    <div class="skill-circle" style="--percent:85;" 
+         data-title="Django" 
+         data-know="Django ORM, Models, Views, Authentication, Middleware"
+         data-built="E-Commerce System, Slot Booking System"
+         data-confidence="85%">
+      <span>Django</span>
+    </div>
+
+    <!-- HTML & CSS -->
+    <div class="skill-circle" style="--percent:85;" 
+         data-title="HTML & CSS"
+         data-know="Responsive UI, Flexbox, Grid, Layouts, Animations"
+         data-built="Portfolio Website, Internship UI Screens"
+         data-confidence="85%">
+      <span>HTML & CSS</span>
+    </div>
+
+    <!-- MySQL -->
+    <div class="skill-circle" style="--percent:82;" 
+         data-title="MySQL"
+         data-know="Tables, Joins, Indexing, Queries, Relationships"
+         data-built="Databases for all Django Projects"
+         data-confidence="82%">
+      <span>MySQL</span>
+    </div>
+
+    <!-- API Management -->
+    <div class="skill-circle" style="--percent:88;" 
+         data-title="API Management"
+         data-know="REST APIs, CRUD, JWT, Validation"
+         data-built="Appointment APIs, Product APIs, Auth APIs"
+         data-confidence="88%">
+      <span>API Mgmt</span>
+    </div>
+
+    <!-- DB Management -->
+    <div class="skill-circle" style="--percent:80;" 
+         data-title="DB Management"
+         data-know="Schema Design, ORM Handling, Optimized Queries"
+         data-built="Database integration for Django Projects"
+         data-confidence="80%">
+      <span>DB Mgmt</span>
+    </div>
+
+    <!-- Git & GitHub -->
+    <div class="skill-circle" style="--percent:55;" 
+         data-title="Git & GitHub"
+         data-know="Branching, Merging, Repo Management"
+         data-built="Uploaded Django Projects, Portfolio"
+         data-confidence="55%">
+      <span>Git & GitHub</span>
+    </div>
+
+    <!-- AWS Basics -->
+    <div class="skill-circle" style="--percent:65;" 
+         data-title="AWS Basics"
+         data-know="EC2, S3, IAM, Cloud Fundamentals"
+         data-built="Deployments during AWS Essentials"
+         data-confidence="65%">
+      <span>AWS Basics</span>
+    </div>
+
+  </div>
+
+<!-- Hover Info Container -->
+<div class="skill-hover-info" id="skill-hover-info">
+    <h1>Hover over a skill to see details</h1>
+</div>
+
+  <!-- Soft Skills -->
+  <h3 class="subheading">Soft Skills</h3>
+  <div class="soft-skills-container">
+    <span class="soft-skill" data-tip="Strong communication with teams and clients.">Communication</span>
+    <span class="soft-skill" data-tip="Collaborates effectively and works well in groups.">Teamwork</span>
+    <span class="soft-skill" data-tip="Breaks problems into logical steps and finds solutions.">Problem Solving</span>
+    <span class="soft-skill" data-tip="Generates new ideas, approaches, and perspectives.">Creativity</span>
+    <span class="soft-skill" data-tip="Leads projects and guides team decisions.">Leadership</span>
+    <span class="soft-skill" data-tip="Learns new technologies fast and adapts easily.">Adaptability</span>
+  </div>
+</section>
+
+
+
+
+<section class="contact" id="contact">
+  <h2 class="heading" style="color: white;">Contact <span>Me</span></h2>
+
+  <div class="contact-container">
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <div class="info-box">
+        <i class='bx bxs-envelope'></i>
+        <h3>Email</h3>
+        <p>rakesh.nalamari.2004@gmail.com</p>
+      </div>
+      <div class="info-box">
+        <i class='bx bxs-phone'></i>
+        <h3>Phone</h3>
+        <p>+91 91105 49806</p>
+      </div>
+      <div class="info-box">
+        <i class='bx bxs-map'></i>
+        <h3>Location</h3>
+        <p>Podili, India</p>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <form id="contact-form" class="contact-form">
+      <input type="text" name="from_name" placeholder="Your Name" required>
+      <input type="email" name="from_email" placeholder="Your Email" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+      <p class="form-msg"></p>
+    </form>
+  </div>
+</section>
+
+
+<script>
+emailjs.init("lu8ra3qLPdPgtWd2R");
+
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("contact-form");
+  const msgBox = document.querySelector(".form-msg");
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    // 1️⃣ Send email to YOU
+    emailjs.sendForm("service_xnzgs38", "template_gkzwrso", form)
+
+      .then(function() {
+
+        // 2️⃣ Send Auto-Reply to USER
+        return emailjs.sendForm("service_xnzgs38", "template_rymzxkk", form);
+
+      })
+
+      .then(function() {
+        msgBox.textContent = "✅ Message sent successfully!";
+        msgBox.style.color = "var(--main-color)";
+        form.reset();
+      })
+
+      .catch(function(error) {
+        msgBox.textContent = "❌ Error: " + error.text;
+        msgBox.style.color = "red";
+      });
+
+  });
+});
+</script>
+
+
+
+      <script src="script.js"></script>
+  </body>
+  </html>

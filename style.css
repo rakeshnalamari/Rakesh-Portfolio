@@ -1,0 +1,1143 @@
+/* ==========================================================================
+   Portfolio CSS — Updated, documented, single-file
+   - Kept all original class names & structure
+   - Switched page background to --secondary-color (unified page)
+   - Kept --bg-color (#0A0A0A) for inner cards/containers (contrast)
+   - Added helpful inline comments and small non-breaking UI improvements
+   ========================================================================== */
+
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* --------------------------
+   Global Reset & Base Setup
+   -------------------------- */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ======================================================
+   SECTION OUTLINE (MAIN-COLOR GLOW)
+   Applied to all major sections
+====================================================== */
+section {
+    position: relative;
+    padding: 10rem 9% 2rem;
+    margin: 5rem 0;
+    border: 2px solid #000; /* Black border for entire section */
+    border-radius: 0;       /* No curves */
+    z-index: 0;
+    overflow: visible;
+}
+
+/* Top-left corner with main color fade */
+section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    background:
+        /* horizontal fade line */
+        linear-gradient(to right, var(--main-color), transparent) top left / 50% 3px no-repeat,
+
+        /* vertical fade line */
+        linear-gradient(to bottom, var(--main-color), transparent) top left / 3px 50% no-repeat;
+
+    z-index: 1;
+}
+
+/* Bottom-right corner with main color fade */
+section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    background:
+        /* horizontal fade line */
+        linear-gradient(to left, var(--main-color), transparent) bottom right / 50% 3px no-repeat,
+
+        /* vertical fade line */
+        linear-gradient(to top, var(--main-color), transparent) bottom right / 3px 50% no-repeat;
+
+    z-index: 1;
+}
+
+
+
+/* --------------------------
+   Root variables (colors)
+   -------------------------- */
+:root{
+    --bg-color : #0A0A0A;        /* ultra-dark black — used for cards/blocks */
+    --secondary-color : #1F1F1F; /* unified page background (lighter dark) */
+    --text-color : #fff;
+    --main-color : #0ef;         /* accent (cyan) */
+    /* RGB breakdown for main-color (used by gradient fallbacks) */
+    --main-r: 0;
+    --main-g: 238;
+    --main-b: 255;
+}
+
+/* Base font scaling */
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+/* --------------------------
+   Page background (UNIFIED)
+   -------------------------- */
+/* NOTE: Using --secondary-color for the whole page as requested.
+   Inner containers and cards continue to use --bg-color to create depth. */
+body {
+    background: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* Small subtle section separator to keep sections distinguishable on a
+   unified background without using full alternate backgrounds. */
+section{
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+    border-top: 1px solid rgba(255,255,255,0.02);
+}
+
+/* --------------------------
+   Header (fixed)
+   -------------------------- */  
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 8%;
+    width: 102%;
+    padding: 2rem 9%;
+    /* subtle gradient to separate header from content on unified bg */
+    background:black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+    cursor: default;
+}
+
+.navbar a{
+    font-size: 1.7rem;
+    color: var(--text-color);
+    margin-left: 4rem;
+    transition: .3s;
+}
+.navbar a:hover,
+.navbar a.active{
+    color: var(--main-color);
+}
+
+#menu-icon{
+    font-size: 3.6rem;
+    color: var(--text-color);
+    display: none;
+}
+
+/* --------------------------
+   HOME
+   -------------------------- */
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-img img{
+    width: 30vw;
+}
+
+.home-content h3{
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.home-content h3:nth-of-type(2) {
+    margin-bottom: 2rem;
+}
+
+span{
+    color: var(--main-color);
+}
+
+.home-content h1{
+   font-size: 5.6rem;
+   font-weight: 700;
+   line-height: 1.3;
+}
+h1 .highlight {
+  color: var(--main-color);
+}
+
+.home-content p{
+    font-size: 1.2rem;
+}
+
+.home-img img,
+.about-img img {
+    border-radius: 50%;
+    object-fit: cover;
+
+    /* Prevent hover height jump */
+    display: inline-block;
+    transform-origin: center bottom;
+
+    /* Your original transitions */
+    transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s ease;
+
+    transform-style: preserve-3d;
+}
+
+/* 3D POP-UP + BLACK SHADOW */
+.home-img img:hover,
+.about-img img:hover {
+    transform: perspective(600px) translateZ(15px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.55);
+}
+
+
+
+
+
+/* Social icons */
+.social-media a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: transparent;
+    border: .2rem solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2.5rem;
+    color: var(--main-color);
+    margin: 3rem 2rem 3rem 0;
+    transition: .5s ease;
+}
+
+.social-media a:hover{
+    background: var(--main-color);
+    color: var(--secondary-color);
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+/* Buttons */
+.btn{
+    display: inline-flex;
+    padding: 1rem 2rem;
+    background: var(--main-color);
+    border-radius: 4rem;
+    box-shadow: 0 0 1rem var(--main-color);
+    font-size: 1.6rem;
+    color: var(--secondary-color);
+    letter-spacing: .1rem;
+    font-weight: 600;
+    transition: .5s ease;
+}
+
+.btn:hover{
+    box-shadow: none;
+}
+
+.download-btn {
+    width: 210px; /* adjust as needed */
+    text-align: center;
+}
+
+/* --------------------------
+   ABOUT
+   -------------------------- */
+/* Note: section background remains unified, .about uses inline layout
+   and has a slightly darker feel through its child elements */
+.about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    /* keep section visually grouped — background still unified */
+    /* inner card uses var(--bg-color) if needed (example: about-content box) */
+}
+.about-img img{
+    width: 35vw;
+}
+.heading{
+    text-align: center;
+    font-size: 4.5rem;
+}
+.about-content h2{
+    text-align: left;
+    line-height: 1.2;
+}
+.about-content h3{
+    font-size: 2.6rem;
+}
+
+.about-content p{
+    font-size: 1.6rem;
+    margin: 2rem 0 3rem;
+}
+
+/* --------------------------
+   Popup Overlay & Box
+   -------------------------- */
+/* Overlay dims the entire viewport */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Popup box: increased min-height and measured max-height for comfortable reading.
+   Uses a soft shaded background using main-color (RGB fallback included). */
+.popup-box {
+  font-size: 1.7rem;
+  line-height: 1.7;
+
+  width: 95%;
+  max-width: 1000px;
+  min-height: 65vh;    /* slightly taller for more content */
+  max-height: 92vh;    /* fits inside viewport with some breathing room */
+
+  padding: 3rem;
+  border-radius: 22px;
+  color: var(--text-color);
+
+  overflow-y: auto;
+  position: relative;
+  animation: popupFade 0.3s ease;
+
+  /* Main color shaded background (fallback to computed rgba) */
+  background: linear-gradient(
+    135deg,
+    rgba(var(--main-r), var(--main-g), var(--main-b), 0.12),
+    rgba(var(--main-r), var(--main-g), var(--main-b), 0.04)
+  );
+
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Close Button inside popup */
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--main-color);
+}
+
+@keyframes popupFade {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+
+
+
+/* --------------------------
+   Projects
+   -------------------------- */
+.projects {
+  /* unified page background (section spacing remains) */
+  background: transparent;
+  padding: 10rem 9% 2rem;
+}
+
+.projects .heading {
+  text-align: center;
+  font-size: 4.5rem;
+  margin-bottom: 4rem;
+}
+
+/* 3 cards per row grid (responsive at breakpoints below) */
+.projects-container,
+.certifications-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+/* Responsive breakpoints for grids */
+@media (max-width: 992px) {
+  .projects-container,
+  .certifications-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-container,
+  .certifications-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Project boxes use --bg-color (black) to stand out on unified page */
+.projects-box,
+.certificate-box {
+  background: var(--bg-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Project image styling & subtle hover lift */
+.projects-box img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px var(--main-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projects-box img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px var(--main-color);
+}
+
+/* Image sizes for projects & certificates */
+.projects-box img,
+.certificate-box img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Titles & paragraphs */
+.projects-box h3,
+.certificate-box h3 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.projects-box p,
+.certificate-box p {
+  font-size: 1.4rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+/* Hover lift for cards */
+.projects-box:hover,
+.certificate-box:hover {
+  transform: translateY(-1rem);
+  box-shadow: 0 0 2rem var(--main-color);
+}
+
+/* --------------------------
+   Education
+   -------------------------- */
+.education {
+  background: transparent;  /* unified page background */
+  padding: 10rem 9% 6rem;
+  text-align: center;
+}
+
+/* Heading */
+.education .heading {
+  font-size: 4.5rem;
+  margin-bottom: 4rem;
+}
+
+/* Track container for steps */
+.edu-track {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+/* Each step uses var(--secondary-color) so the card is slightly lighter than card bg */
+.edu-step {
+  background: var(--bg-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 30%;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+}
+
+.edu-step:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 0 2rem var(--main-color);
+}
+
+/* Glowing dot */
+.edu-dot {
+  width: 20px;
+  height: 20px;
+  background: var(--main-color);
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  box-shadow: 0 0 1rem var(--main-color);
+  transition: transform 0.3s ease;
+}
+
+/* Titles and text */
+.edu-step h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+.edu-step p {
+  font-size: 1.4rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+/* Read more (button at bottom of card) */
+.edu-btn {
+  align-self: center;
+  margin-top: auto;
+  cursor: pointer;
+  padding: 0.8rem 2rem;
+  border-radius: 4rem;
+  background: var(--main-color);
+  color: var(--secondary-color);
+  font-size: 1.4rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.edu-btn:hover {
+  box-shadow: 0 0 1.5rem var(--main-color);
+}
+
+/* Read-more content box (expanded content) */
+.edu-more-content ul {
+  text-align: left;
+  padding-left: 2rem;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.edu-readmore-box {
+    margin-top: 6rem;
+    min-height: 200px;
+    padding: 3rem 2.5rem;
+    border-radius: 1rem;
+    background: var(--bg-color);
+    box-shadow: 0 0 2rem var(--main-color);
+    color: var(--text-color);
+    font-size: 2rem;
+    line-height: 2.4rem;
+    transition: all 0.5s ease;
+}
+
+.edu-readmore-inner {
+  width: 100%;
+}
+
+/* Fade-in animation for readmore */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Education responsive widths */
+@media (max-width: 992px) {
+  .edu-step {
+    width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .edu-track {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .edu-step {
+    width: 80%;
+    min-height: auto;
+  }
+
+  .edu-readmore-box {
+    width: 90%;
+    margin: 3rem auto 0 auto;
+  }
+}
+
+
+
+
+
+/* -------------------------- SKILLS SECTION -------------------------- */
+.skills {
+  padding: 8rem 9% 6rem;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.skills .heading {
+  font-size: 4.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.skills .heading span {
+  color: var(--main-color);
+}
+
+.skills .subheading {
+  font-size: 2.2rem;
+  margin: 3rem 0 1.5rem;
+  color: var(--main-color);
+}
+
+/* -------------------------- TECHNICAL SKILLS -------------------------- */
+.skill-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+/* MAIN CIRCLE */
+.skill-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.35s ease;
+  z-index: 3;
+}
+
+/* Percentage Bar */
+.skill-circle::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--main-color) calc(var(--percent) * 1%),
+    rgba(255, 255, 255, 0.15) 0
+  );
+  box-shadow: 0 0 18px var(--main-color);
+  transition: 0.4s ease;
+}
+
+/* Inner Text Circle */
+.skill-circle span {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  color: var(--main-color);
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0.4rem;
+  z-index: 2;
+}
+
+/* Hover Zoom */
+.skill-circle:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 25px var(--main-color);
+}
+
+/* -------------------------- HOVER INFO BOX -------------------------- */
+.skill-hover-info {
+  position: relative;
+  margin: 3rem auto 0;
+  width: 60%;
+  max-width: 900px;
+  min-height: 220px;
+
+  background: var(--bg-color);
+  border-radius: 20px;
+  border: 1px solid rgba(var(--main-color-rgb), 0.25);
+  box-shadow: 0 0 25px var(--main-color);
+
+  padding: 2.5rem;
+
+  display: flex;
+  justify-content: center;       /* vertical center */
+  align-items: center;           /* vertical center */
+  text-align: left;              /* left-align text */
+  gap: 0.8rem;
+
+  opacity: 1;
+}
+
+.skill-hover-info .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;                    /* hidden initially */
+  transition: opacity 1s ease-in-out;  /* slow fade-in */
+  width: 100%;
+}
+
+.skill-hover-info.show-content .content {
+  opacity: 1;                    /* fade-in on hover */
+}
+
+.skill-hover-info h1 {
+  text-align: center;
+  color: var(--main-color);
+  font-size: 2rem;
+}
+
+.skill-hover-info h4 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--main-color);
+  margin-bottom: 0.8rem;
+}
+
+.skill-hover-info p {
+  font-size: 1.5rem;
+  padding-left: 10%;
+  opacity: 0.9;
+  margin: 0.3rem 0;
+}
+
+/* -------------------------- SOFT SKILLS -------------------------- */
+.soft-skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem 2rem;
+  margin-top: 3rem;
+}
+
+.soft-skill {
+  padding: 1rem 2.2rem;
+  border-radius: 40px;
+  background: var(--bg-color);
+  color: var(--main-color);
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 0 1rem var(--main-color);
+  transition: 0.3s ease;
+  position: relative;
+}
+
+/* Hover effect */
+.soft-skill:hover {
+  background: var(--main-color);
+  color: var(--secondary-color);
+  box-shadow: 0 0 2rem var(--main-color);
+}
+
+/* Tooltip */
+.soft-skill::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: -55px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--main-color);
+  color: var(--bg-color);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: 0.35s ease;
+}
+
+.soft-skill:hover::after {
+  opacity: 1;
+}
+
+/* -------------------------- RESPONSIVE -------------------------- */
+@media(max-width: 768px){
+  .skill-circle {
+    width: 105px;
+    height: 105px;
+  }
+  .skill-circle span {
+    width: 75px;
+    height: 75px;
+    font-size: 1rem;
+  }
+  .skill-hover-info {
+    width: 95%;
+    padding: 1.5rem;
+  }
+}
+
+
+
+
+
+/* --------------------------
+   CERTIFICATIONS
+   -------------------------- */
+.certifications {
+  padding: 10rem 9% 2rem;
+  background: transparent;
+  color: #C0C0C0;
+  text-align: center;
+}
+
+.certifications .heading {
+  font-size: 4.5rem;
+  margin-bottom: 4rem;
+}
+
+.certifications .heading span {
+  color: var(--main-color);
+}
+
+/* grid for certificates (2 rows x 3 cols on desktop) */
+.certifications-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* each certificate box is a square, visually prominent */
+.certificate-box {
+  background: var(--bg-color);
+  border-radius: 1rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  box-shadow: 0 6px 15px var(--main-color);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  gap: 1rem;
+}
+
+.certificate-box h3 {
+  font-size: 2.2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.certificate-box p {
+  font-size: 1.4rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+/* certificate button style */
+.certificate-box .btn {
+  background: var(--main-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+}
+.certificate-box .btn:hover { opacity: 0.9; }
+
+.certificate-box:hover {
+  transform: translateY(-1rem);
+  box-shadow: 0 0 2rem var(--main-color);
+}
+
+/* Modal viewer for certificates */
+.certificate-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  text-align: center;
+  overflow-y: auto;
+  padding: 50px 0;
+  box-sizing: border-box;
+}
+
+.certificate-modal img {
+  width: 90%;
+  max-width: 800px;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 10px;
+  margin: 40px auto;
+  box-shadow: 0 0 25px var(--main-color);
+  display: block;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/* responsive certificates */
+@media (max-width: 992px) {
+  .certifications-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 2rem;
+  }
+  .certificate-box {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .certifications-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 1.5rem;
+  }
+  .certificate-box {
+    width: 90%;
+    aspect-ratio: auto;
+    padding: 1rem;
+  }
+}
+
+/* --------------------------
+   CONTACT
+   -------------------------- */
+.contact {
+  background: transparent;
+  padding: 10rem 9% 6rem;
+  color: #ccc;
+  text-align: center;
+}
+
+.contact .heading {
+  font-size: 4.5rem;
+  margin-bottom: 4rem;
+}
+
+.contact .heading span {
+  color: var(--main-color);
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5rem;
+}
+
+/* Info boxes use black bg to stand out on unified background */
+.contact-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-box {
+  background: var(--bg-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 2rem var(--main-color);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 0 3rem var(--main-color);
+}
+
+.info-box i {
+  font-size: 3rem;
+  color: var(--main-color);
+  margin-bottom: 1rem;
+}
+
+.info-box h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.info-box p {
+  font-size: 1.6rem;
+}
+
+/* Contact form uses black card bg */
+.contact-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--bg-color);
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 2rem var(--main-color);
+  position: relative;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 1rem 1.5rem;
+  border-radius: 0.8rem;
+  background: var(--secondary-color);
+  color: #fff;
+  font-size: 1.6rem;
+  border: 0.2rem solid var(--main-color);
+  resize: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--main-color);
+  outline: none;
+  box-shadow: 0 0 1.5rem var(--main-color);
+}
+
+.contact-form .btn {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 50px;
+  border: none;
+  background: var(--main-color);
+  color: var(--bg-color);
+  cursor: pointer;
+  box-shadow: 0 0 1rem var(--main-color);
+  transition: all 0.3s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center; /* centers text vertically */
+}
+
+
+.contact-form .btn:hover {
+  box-shadow: none;
+}
+
+.contact-form .form-msg {
+  color: var(--main-color);
+  font-size: 1.4rem;
+  margin-top: 1rem;
+  min-height: 2rem;
+  text-align: center;
+}
+
+/* contact responsive */
+@media (max-width: 992px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info, .contact-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1.4rem;
+  }
+  .contact-form .btn {
+    font-size: 1.4rem;
+  }
+}
+
+/* --------------------------
+   Scrollbar styling (subtle, matches theme)
+   -------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.35);
+  border-radius: 8px;
+  border: 2px solid rgba(255,255,255,0.02);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* --------------------------
+   Small helper responsive tweaks
+   -------------------------- */
+@media (max-width: 768px) {
+  #menu-icon{ display: block; }
+  .navbar { display: none; }
+  .home-img img { width: 40vw; }
+  .heading { font-size: 3.6rem; }
+  .home-content h1 { font-size: 4.2rem; }
+}
+
+/* End of file */
